@@ -1,9 +1,12 @@
 import styles from '../styles/Home.module.css'
 
-function Footer() {
-    return <h1 className={styles.title}>
-        Open Food Facts
-    </h1>
+function Header() {
+    return <div className={styles.header}>
+        <img className={styles.header__img} src="https://thefoodassembly.com/fr/p/assets/images/homepage-basket/basket-summer-fr-FR-0221.svg" />
+        <h1 className={styles.header__title}>
+            <a href='/'>Moteur de recherche Open Food Facts</a>
+        </h1>
+    </div>
 }
 
-export default Footer;
+export default Header;
