@@ -24,7 +24,9 @@ function SearchForm({ defaultQuery }) {
 
   return (
     <form role="search" aria-label="Moteur de recherche principal" className={styles.search_form} onSubmit={handleSubmit}>
+      <label htmlFor="Entrer un produit à rechercher"></label>
       <input className={styles.search_form__input} type="text" value={query} onChange={(event) => handleChange(event.target.value)} placeholder="Chercher un produit" />
+      <label htmlFor="Bouton recherche"></label>
       <input className={styles.search_form__button} type="submit" aria-label="Chercher un produit" value="Recherche" />
     </form>
 
