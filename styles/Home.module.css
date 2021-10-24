@@ -53,6 +53,7 @@
   width: 250px;
   height: auto;
   padding-top: 20px;
+  border-radius: 10px;
 }
 
 .search_result_list {
@@ -107,7 +108,8 @@
 
 .product__previous_button {
   position: absolute;
-  left: 10px
+  left: 10px;
+  cursor: pointer;
 }
 
 .product__previous_button:hover {
