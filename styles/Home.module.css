@@ -60,9 +60,23 @@
   margin: 0;
 }
 .product_card__img {
-  width: 150px;
-  height: 150px;
-  padding-top: 20px;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.product_card__img_container {
+  width: 180px;
+  height: 180px;
+  margin: 20px auto auto auto;
+  position: relative;
 }
 
 .product_card__button {
