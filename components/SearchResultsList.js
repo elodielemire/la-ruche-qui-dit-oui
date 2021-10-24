@@ -8,7 +8,7 @@ function SearchResultList({ items, router }) {
                 <p>Résultat de la recherche :</p>
                 <ul className={styles.search_result_list}>
                     {items.map(item => (
-                        <li key={item.id} className={styles.search_result_list__item}>
+                        <li key={item.product_name + '_' + item.id} className={styles.search_result_list__item}>
                             <ProductCard item={item} router={router} />
                         </li>
                     ))}
