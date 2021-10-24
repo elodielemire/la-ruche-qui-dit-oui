@@ -57,7 +57,7 @@ function Home() {
         <div className={styles.body}>
           <p>Bienvenue sur le moteur de recherche d'<a className={styles.body__link} href='https://fr.openfoodfacts.org'>Open Food Facts.</a></p>
           <p>Saisissez le nom d'un produit dans la barre de recherche pour aller lire ses informations.</p>
-          {error ? <ErrorMessage errorMessage={error.message} /> : ""}
+          {error && <ErrorMessage errorMessage={error.message} />}
           {isLoading ? <LoadingMessage /> : <SearchResultList items={items} router={router} />}
         </div>
       </main>
