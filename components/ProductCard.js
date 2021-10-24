@@ -9,7 +9,7 @@ function ProductCard({ item , router}) {
         }
     }
 
-    return <div className={styles.product_card} onKeyPress={(e) => handleKeypress(e, item)} tabIndex="0">
+    return <div className={styles.product_card} onKeyPress={(e) => handleKeypress(e, item)} tabIndex="0" aria-label={"Ouvir le produit " + item.product_name}>
     <Link href={"/product/" + item.id}>
         <a>
             {item.image_front_small_url ?
