@@ -17,6 +17,19 @@ function Product() {
     const router = useRouter()
     const { id: productId } = router.query // productId = router.query.id
 
+    const previousPage = (e) => {
+        if (e.key == 'Backspace') {
+            router.back();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("keydown", previousPage, false);
+        return () => {
+            document.removeEventListener("keydown", previousPage, false);
+        };
+    }, []);
+
     useEffect(() => {
         async function fetchProduct() {
             try {
@@ -52,13 +65,16 @@ function Product() {
                 <div className={styles.body}>
                     {error ? <ErrorMessage errorMessage={error.message} /> : ""}
                     {isLoading ? <LoadingMessage /> :
-                        <div className={styles.product}>
-                            {product.product_name ? <h2 className={styles.product__name}>{product.product_name}</h2> : ''}
-                            {product.image_front_url ? <img src={product.image_front_url} /> : ''}
-                            {product.categories ? <p className={styles.product__text}><label htmlFor="product categories" className={styles.product__label}>Categories : </label>{product.categories}</p> : ''}
-                            {product.allergens_hierarchy && product.allergens_hierarchy.length != 0 ? <p className={styles.product__text}><label htmlFor="product allergens" className={styles.product__label}>Allergènes : </label>{product.allergens_hierarchy}</p> : ''}
-                            {product.ingredients_text ? <p className={styles.product__text}><label htmlFor="product ingredients" className={styles.product__label}>Ingredients : </label>{product.ingredients_text}</p> : ''}
-                        </div>
+                        <React.Fragment>
+                            <a className={styles.product__previous_button} onClick={() => router.back()} aria-label="Page précédente">← Retour</a>
+                            <div className={styles.product}>
+                                {product.product_name ? <h2 className={styles.product__name}>{product.product_name}</h2> : ''}
+                                {product.image_front_url ? <img src={product.image_front_url} /> : ''}
+                                {product.categories ? <p className={styles.product__text}><label htmlFor="product categories" className={styles.product__label}>Categories : </label>{product.categories}</p> : ''}
+                                {product.allergens_hierarchy && product.allergens_hierarchy.length != 0 ? <p className={styles.product__text}><label htmlFor="product allergens" className={styles.product__label}>Allergènes : </label>{product.allergens_hierarchy}</p> : ''}
+                                {product.ingredients_text ? <p className={styles.product__text}><label htmlFor="product ingredients" className={styles.product__label}>Ingredients : </label>{product.ingredients_text}</p> : ''}
+                            </div>
+                        </React.Fragment>
                     }
                 </div>
             </main>

@@ -105,6 +105,15 @@
   padding: 30px;
 }
 
+.product__previous_button {
+  position: absolute;
+  left: 10px
+}
+
+.product__previous_button:hover {
+  text-decoration: underline;
+}
+
 .product__name,
 .product__text {
   margin: 0;
