@@ -49,16 +49,21 @@
 
 .product_card {
   margin: 20px;
-  list-style: none;
   background-color: white;
-  display: inline-block;
   width: 250px;
   height: auto;
+  padding-top: 20px;
 }
 
 .search_result_list {
   margin: 0;
 }
+
+.search_result_list__item {
+  list-style: none;
+  display: inline-block;
+}
+
 .product_card__img {
   max-width: 100%;
   max-height: 100%;
@@ -75,7 +80,7 @@
 .product_card__img_container {
   width: 180px;
   height: 180px;
-  margin: 20px auto auto auto;
+  margin: auto;
   position: relative;
 }
 

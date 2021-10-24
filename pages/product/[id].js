@@ -15,7 +15,7 @@ function Product() {
     const [product, setProduct] = useState({});
 
     const router = useRouter()
-    const { id: productId } = router.query
+    const { id: productId } = router.query // productId = router.query.id
 
     useEffect(() => {
         async function fetchProduct() {

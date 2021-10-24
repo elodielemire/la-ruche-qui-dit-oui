@@ -17,7 +17,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [items, setItems] = useState(cachedItems);
   const router = useRouter()
-  const { q: query } = router.query
+  const { q: query } = router.query // query = router.query.q = le contenu de la barre de recherche
 
   async function fetchDatas(query) {
     try {
@@ -58,7 +58,7 @@ function Home() {
           <p>Bienvenue sur le moteur de recherche d'<a className={styles.body__link} href='https://fr.openfoodfacts.org'>Open Food Facts.</a></p>
           <p>Saisissez le nom d'un produit dans la barre de recherche pour aller lire ses informations.</p>
           {error ? <ErrorMessage errorMessage={error.message} /> : ""}
-          {isLoading ? <LoadingMessage /> : <SearchResultList items={items} />}
+          {isLoading ? <LoadingMessage /> : <SearchResultList items={items} router={router} />}
         </div>
       </main>
 
