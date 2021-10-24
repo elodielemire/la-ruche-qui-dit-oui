@@ -2,10 +2,13 @@ import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
+// Components
 import SearchForm from '../components/SearchForm'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import SearchResultList from '../components/SearchResultsList'
+import LoadingMessage from '../components/LoadingMessage'
+import ErrorMessage from '../components/ErrorMessage'
 
 let cachedItems = [];
 
@@ -55,21 +58,13 @@ function Home() {
           <p>Bienvenue sur le moteur de recherche d'<a className={styles.body__link} href='https://fr.openfoodfacts.org'>Open Food Facts.</a></p>
           <p>Saisissez le nom d'un produit dans la barre de recherche pour aller lire ses informations.</p>
           {error ? <ErrorMessage errorMessage={error.message} /> : ""}
-          {isLoading ? <Loading /> : <SearchResultList items={items} />}
+          {isLoading ? <LoadingMessage /> : <SearchResultList items={items} />}
         </div>
       </main>
 
       <Footer />
     </div>
   );
-}
-
-function Loading() {
-  return <p>Chargement...</p>
-}
-
-function ErrorMessage(errorMessage) {
-  return <div> Erreur : {errorMessage} </div>
 }
 
 export default Home;

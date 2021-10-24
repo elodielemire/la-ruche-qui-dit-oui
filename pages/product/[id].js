@@ -2,9 +2,12 @@ import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
 import styles from '../../styles/Home.module.css'
 import { useRouter } from 'next/router'
+// Components
 import SearchForm from '../../components/SearchForm'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
+import LoadingMessage from '../../components/LoadingMessage'
+import ErrorMessage from '../../components/ErrorMessage'
 
 function Product() {
     const [error, setError] = useState(null);
@@ -48,7 +51,7 @@ function Product() {
                 <SearchForm />
                 <div className={styles.body}>
                     {error ? <ErrorMessage errorMessage={error.message} /> : ""}
-                    {isLoading ? <Loading /> :
+                    {isLoading ? <LoadingMessage /> :
                         <div className={styles.product}>
                             {product.product_name ? <h2 className={styles.product__name}>{product.product_name}</h2> : ''}
                             {product.image_front_url ? <img src={product.image_front_url} /> : ''}
@@ -63,14 +66,6 @@ function Product() {
             <Footer />
         </div>
     );
-}
-
-function Loading() {
-    return <p>Chargement...</p>
-}
-
-function ErrorMessage(errorMessage) {
-    return <div> Erreur : {errorMessage} </div>
 }
 
 export default Product;
