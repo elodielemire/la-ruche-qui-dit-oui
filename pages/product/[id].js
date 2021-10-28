@@ -13,17 +13,18 @@ function Product() {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [product, setProduct] = useState({});
-
+    // attention à ne pas avoir trop de useState car la page se render à chaque appel de set...
+    
     const router = useRouter()
     const { id: productId } = router.query // productId = router.query.id
 
-    const previousPage = (e) => {
-        if (e.key == 'Backspace') {
-            router.back();
-        }
-    }
-
     useEffect(() => {
+        const previousPage = (e) => {
+            if (e.key == 'Backspace') {
+                router.back();
+            }
+        }
+    
         document.addEventListener("keydown", previousPage, false);
         return () => {
             document.removeEventListener("keydown", previousPage, false);
@@ -33,13 +34,17 @@ function Product() {
     useEffect(() => {
         async function fetchProduct() {
             try {
+                // Passer en variable l'URL pour pouvoir passer d'un env de prod à local etc
                 let apiUrl = "https://world.openfoodfacts.org/api/v0/product/" + encodeURIComponent(productId) + ".json?fields=product_name%2Ccategories%2Cimage_front_url%2Callergens_hierarchy%2Cingredients_text";
                 setIsLoading(true);
                 const response = await fetch(apiUrl);
                 const fetchedData = await response.json();
-                if (fetchedData.product) {
+                if (fetchedData.product) { // comment on fait si l'ID n'existe pas ?
+                    setError(null);
                     setIsLoading(false);
                     setProduct(fetchedData.product);
+                } else {
+                   setError(new Error("Produit non trouvé"));
                 }
             }
             catch (error) {
@@ -48,7 +53,9 @@ function Product() {
             }
         }
 
-        fetchProduct();
+        if (productId) {
+            fetchProduct();
+        }
     }, [productId]);
 
     return (
